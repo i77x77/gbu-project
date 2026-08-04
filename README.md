@@ -1,16 +1,71 @@
-# React + Vite
+# gbu-project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Фронтенд-проект на React + Vite.
 
-Currently, two official plugins are available:
+## Стек
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19
+- React Router 7
+- Vite 8
+- ESLint
 
-## React Compiler
+## Требования
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Node.js** версии 20 или выше (проверить: `node -v`). Скачать: https://nodejs.org
+- **npm** идёт в комплекте с Node.js (проверить: `npm -v`)
+- **git** для клонирования репозитория
 
-## Expanding the ESLint configuration
+## Установка
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Склонировать репозиторий:
+
+   ```bash
+   git clone https://github.com/i77x77/gbu-project.git
+   cd gbu-project
+   ```
+
+2. Установить зависимости:
+
+   ```bash
+   npm install
+   ```
+
+## Разработка
+
+Запустить локальный dev-сервер с горячей перезагрузкой (HMR):
+
+```bash
+npm run dev
+```
+
+По умолчанию проект будет доступен по адресу, который Vite выведет в консоль (обычно `http://localhost:5173`).
+
+## Проверка кода линтером
+
+```bash
+npm run lint
+```
+
+## Сборка production-версии
+
+Собрать проект в папку `dist`:
+
+```bash
+npm run build
+```
+
+Локально посмотреть собранную production-версию:
+
+```bash
+npm run preview
+```
+
+## Структура проекта
+
+```
+src/
+  pages/       # страницы приложения
+  App.jsx      # корневой компонент, роутинг
+  main.jsx     # точка входа
+public/        # статические файлы
+```
