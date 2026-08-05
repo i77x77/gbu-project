@@ -1,0 +1,37 @@
+.character-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s ease;
+  max-width: 250px;
+}
+
+.character-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.character-card img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 12px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.character-card h3 {
+  margin: 8px 0;
+  color: #2c3e50;
+  font-size: 18px;
+}
+
+.character-card p {
+  margin: 4px 0;
+  color: #666;
+  font-size: 14px;
+}
