@@ -1,39 +1,43 @@
 import CharacterCard from '../components/CharacterCard';
-import rick from '../assets/rick.jpeg';
-import morty from '../assets/morty.png';
-import summer from '../assets/summer.jpeg';
-import beth from '../assets/beth.jpeg';
+import { useState, useEffect } from 'react';
 
 function Home() {
-  // Временные данные для проверки (без API)
+  const [characters, setCharacters] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  useEffect(() => {
+    const fetchCharacters = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        
+        const response = await fetch('https://rickandmortyapi.com/api/character');
+        
+        if (!response.ok) {
+          throw new Error(`Ошибка запроса: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        setCharacters(data.results);
+        
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-const testCharacters = [
-  {
-    id: 1,
-    name: 'Rick Sanchez',
-    status: 'Alive',
-    image: rick
-  },
-  {
-    id: 2,
-    name: 'Morty Smith',
-    status: 'Alive',
-    image: morty
-  },
-  {
-    id: 3,
-    name: 'Summer Smith',
-    status: 'Alive',
-    image: summer
-  },
-  {
-    id: 4,
-    name: 'Beth Smith',
-    status: 'Alive',
-    image: beth
+    fetchCharacters();
+  }, []);
+
+  if (loading) {
+    return <div>Загрузка...</div>;
   }
-];
+
+  if (error) {
+    return <div>Ошибка: {error}</div>;
+  }
 
   return (
     <div>
@@ -43,7 +47,7 @@ const testCharacters = [
         gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', 
         gap: '20px' 
       }}>
-        {testCharacters.map(character => (
+        {characters.map(character => (
           <CharacterCard key={character.id} character={character} />
         ))}
       </div>
