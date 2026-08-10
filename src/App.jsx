@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home.jsx";
+import CharacterDetail from "./components/characterDetail.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
 // Корневой компонент: описывает роутинг приложения.
@@ -8,7 +9,13 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<Home />} />
+        {/* Главная страница со списком */}
+        <Route path="/" element={<Home />} />
+
+        {/* Страница с деталями персонажа по его ID */}
+        <Route path="/character/:id" element={<CharacterDetail />} />
+
+        {/* Заглушка для любых несуществующих путей */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

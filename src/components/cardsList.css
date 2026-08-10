@@ -1,0 +1,272 @@
+@import './root.css';
+
+/* ---------- ШРИФТЫ И ГЛОБАЛЬНЫЕ СТИЛИ ---------- */
+
+@font-face {
+  font-family: 'Get Schwifty';
+  src: url('../assets/get_schwifty.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg-main);
+  background-image: url('../assets/background_cosmos_rick_and_morty.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.page-wrapper {
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  box-sizing: border-box;
+}
+
+/* ---------- ЗАГОЛОВОК СТРАНИЦЫ ---------- */
+
+.main-title {
+  font-family: 'Get Schwifty', cursive, sans-serif;
+  font-size: 3.5rem;
+  font-weight: normal;
+  text-align: center;
+  margin: var(--space-lg) 0 var(--space-md) 0;
+  color: var(--color-accent);
+  -webkit-text-stroke: 2px #000000;
+  letter-spacing: 2px;
+  text-shadow: var(--glow-accent-lg); /* Сочное неоновое свечение заголовка */
+}
+
+@media (max-width: 600px) {
+  .main-title {
+    font-size: 2.2rem;
+    -webkit-text-stroke: 1.5px #000000;
+  }
+}
+
+/* ---------- ФИЛЬТРЫ И ПОИСК ---------- */
+
+.filter-container {
+  padding: var(--space-md);
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+/* Поле поиска */
+.search-input {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  font-size: 16px;
+  color: var(--color-text);
+  background: var(--color-bg-surface);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-lg);
+  outline: none;
+  box-sizing: border-box;
+  box-shadow: var(--glow-accent), inset 0 0 8px rgba(0, 240, 255, 0.25);
+  transition: all 0.3s ease-in-out;
+}
+
+.search-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.search-input:focus {
+  box-shadow: var(--glow-accent-lg), inset 0 0 16px rgba(0, 240, 255, 0.4);
+}
+
+/* Селект выбора статуса */
+.status-filter {
+  padding: var(--space-sm) var(--space-md);
+  font-size: 16px;
+  color: var(--color-accent);
+  background: var(--color-bg-surface);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-lg);
+  outline: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  min-width: 180px;
+  box-shadow: var(--glow-accent), inset 0 0 8px rgba(0, 240, 255, 0.25);
+  transition: all 0.3s ease-in-out;
+}
+
+.status-filter:focus {
+  box-shadow: var(--glow-accent-lg);
+}
+
+.status-filter option {
+  background-color: var(--color-bg-surface);
+  color: var(--color-text);
+}
+
+@media (max-width: 599px) {
+  .filter-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-sm);
+  }
+  .search-wrapper,
+  .status-filter {
+    width: 100%;
+    min-width: 100%;
+  }
+}
+
+/* ---------- СЕТКА КАРТОЧЕК ---------- */
+
+.cards-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-lg);
+  padding: var(--space-lg) var(--space-md);
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+  position: relative;
+  min-height: 256px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1440px) {
+  .cards-list {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    padding: var(--space-md);
+  }
+}
+
+@media (max-width: 800px) {
+  .cards-list {
+    grid-template-columns: repeat(1, 1fr);
+    gap: var(--space-sm);
+    padding: var(--space-sm);
+  }
+}
+
+/* ---------- ОВЕРЛЕИ, ОШИБКИ И ЗАГРУЗКА ---------- */
+
+.centered-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  width: 100%;
+  max-width: 512px;
+  padding: var(--space-md);
+  box-sizing: border-box;
+}
+
+.loading-spinner {
+  font-size: 2.5rem;
+  color: var(--color-accent);
+  text-shadow: var(--glow-accent-lg);
+}
+
+.error-message,
+.no-results-message {
+  font-size: 1.2rem;
+  background: rgba(15, 5, 10, 0.85);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  box-sizing: border-box;
+}
+
+.error-message {
+  color: var(--color-error);
+  border: 2px solid var(--color-error);
+  box-shadow: var(--glow-error);
+}
+
+.no-results-message {
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+  background: var(--color-bg-surface);
+  box-shadow: var(--glow-accent);
+}
+
+/* ---------- ПАГИНАЦИЯ ---------- */
+
+.pagination-controls {
+  padding: var(--space-lg) var(--space-md);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  align-items: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.pagination-btn {
+  padding: var(--space-sm) var(--space-md);
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--color-accent);
+  background: var(--color-bg-surface);
+  color: var(--color-accent);
+  cursor: pointer;
+  box-shadow: var(--glow-accent);
+  transition: all 0.2s ease-in-out;
+  font-family: inherit;
+  user-select: none;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: var(--color-accent);
+  color: var(--color-bg-main);
+  box-shadow: var(--glow-accent-lg);
+  transform: translateY(-2px);
+}
+
+.pagination-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.35;
+  border-color: var(--color-text-muted);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.pagination-info {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .pagination-controls {
+    padding: var(--space-md);
+    gap: var(--space-sm);
+  }
+
+  .pagination-btn,
+  .pagination-info {
+    font-size: 14px;
+  }
+}
