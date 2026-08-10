@@ -6,7 +6,7 @@ function Pagination({ page, totalPages, onPageChange }) {
         disabled={page === 1}
         className="pagination-btn"
       >
-        ⬅️ Назад
+        ← Назад
       </button>
       
       <span className="pagination-info">
@@ -18,7 +18,7 @@ function Pagination({ page, totalPages, onPageChange }) {
         disabled={page === totalPages}
         className="pagination-btn"
       >
-        Вперед ➡️
+        Вперед →
       </button>
     </div>
   );

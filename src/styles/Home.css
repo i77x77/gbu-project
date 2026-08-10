@@ -44,29 +44,29 @@ body {
 }
 
 .pagination-btn {
-  padding: 12px 28px;
+  padding: 10px 20px;
   border-radius: 12px;
-  border: none;
-  cursor: pointer;
   font-size: 16px;
   font-weight: 600;
+  text-decoration: none;
   transition: all 0.3s ease;
-  background: linear-gradient(135deg, #2a2f4a, #3a3f5a);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   color: #ffffff;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 .pagination-btn:hover:not(:disabled) {
+  background: rgba(0, 255, 135, 0.08);
+  border-color: rgba(0, 255, 135, 0.2);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 255, 135, 0.3);
-  background: linear-gradient(135deg, #3a3f5a, #4a4f6a);
 }
 
 .pagination-btn:disabled {
-  opacity: 0.4;
+  opacity: 0.3;
   cursor: not-allowed;
   transform: none;
-  background: #1a1f35;
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .pagination-info {

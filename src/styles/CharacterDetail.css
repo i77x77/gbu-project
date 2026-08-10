@@ -1,0 +1,194 @@
+/* Общие стили для страницы деталей */
+.detail-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ===== НАВИГАЦИЯ ===== */
+.navigation-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Кнопка "Назад к списку" */
+.back-link {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 12px;
+  color: #00ff87;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  background: rgba(0, 255, 135, 0.05);
+  border: 1px solid rgba(0, 255, 135, 0.1);
+}
+
+.back-link:hover {
+  color: #60efff;
+  background: rgba(0, 255, 135, 0.1);
+  border-color: rgba(0, 255, 135, 0.2);
+}
+
+/* Кнопки "Назад" и "Вперед" */
+.nav-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.nav-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.nav-btn:hover {
+  background: rgba(0, 255, 135, 0.08);
+  border-color: rgba(0, 255, 135, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 255, 135, 0.1);
+}
+
+/* ===== КАРТОЧКА ПЕРСОНАЖА ===== */
+.character-card-detail {
+  display: flex;
+  gap: 30px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  flex-wrap: wrap;
+}
+
+/* Аватар */
+.character-avatar {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Информация о персонаже */
+.character-info {
+  flex: 1;
+  min-width: 200px;
+}
+
+.character-name {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #00ff87, #60efff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.character-info p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #c0c0c0;
+}
+
+.character-info p strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* ===== ЭПИЗОДЫ ===== */
+.episodes-section {
+  margin-top: 20px;
+}
+
+.episodes-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.episodes-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.episode-tag {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #8899bb;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 768px) {
+  .character-card-detail {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .character-avatar {
+    width: 200px;
+    height: 200px;
+  }
+
+  .character-name {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .character-info {
+    text-align: center;
+  }
+
+  .episodes-list {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .navigation-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nav-buttons {
+    justify-content: center;
+  }
+
+  .back-link {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .character-avatar {
+    width: 150px;
+    height: 150px;
+  }
+
+  .character-name {
+    font-size: 22px;
+  }
+
+  .character-info p {
+    font-size: 14px;
+  }
+}
+

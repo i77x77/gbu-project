@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
 import Pagination from '../components/Pagination';
 import CharacterCard from '../components/CharacterCard';
@@ -99,7 +100,9 @@ function Home() {
       ) : (
         <div className="characters-grid">
           {characters.map(character => (
-            <CharacterCard key={character.id} character={character} />
+            <Link to={`/character/${character.id}`} key={character.id} style={{ textDecoration: 'none' }}>
+              <CharacterCard character={character} />
+            </Link>
           ))}
         </div>
       )}
