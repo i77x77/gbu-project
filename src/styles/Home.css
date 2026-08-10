@@ -1,0 +1,187 @@
+/* Общие стили */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0a0e1a;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Контейнер страницы — без свечения */
+.home-container {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: #0d1225;
+  color: #ffffff;
+}
+
+/* Заголовок */
+.home-container h1 {
+  text-align: center;
+  font-size: 42px;
+  font-weight: 800;
+  margin: 30px 0 20px;
+  background: linear-gradient(135deg, #00ff87, #60efff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 40px rgba(0, 255, 135, 0.2);
+  letter-spacing: 2px;
+}
+
+/* Пагинация */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.pagination-btn {
+  padding: 12px 28px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #2a2f4a, #3a3f5a);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.pagination-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 255, 135, 0.3);
+  background: linear-gradient(135deg, #3a3f5a, #4a4f6a);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  background: #1a1f35;
+}
+
+.pagination-info {
+  padding: 10px 24px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #8899bb;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Сетка карточек */
+.characters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 24px;
+  padding: 20px 0;
+}
+
+/* Сообщение "Ничего не найдено" */
+.no-results {
+  text-align: center;
+  padding: 80px 20px;
+  font-size: 24px;
+  color: #8899bb;
+  grid-column: 1 / -1;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+}
+
+/* Ошибка и загрузка */
+.home-container > .error,
+.home-container > .loading {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 20px;
+  color: #ff6b6b;
+}
+
+.home-container > .loading {
+  color: #60efff;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .characters-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    padding: 16px;
+  }
+
+  .home-container h1 {
+    font-size: 28px;
+    margin: 20px 0 16px;
+  }
+
+  .characters-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+  }
+
+  .pagination {
+    gap: 12px;
+  }
+
+  .pagination-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .pagination-info {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .no-results {
+    font-size: 18px;
+    padding: 60px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-container h1 {
+    font-size: 22px;
+  }
+
+  .characters-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+  }
+
+  .pagination {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .pagination-btn {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  .pagination-info {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .no-results {
+    font-size: 16px;
+    padding: 40px 12px;
+  }
+}
