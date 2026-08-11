@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import Loader from './loader';
 import './characterDetail.css';
-
-const loadingSymbols = ['|', '/', '-', '\\'];
 
 const CharacterDetail = () => {
   const { id } = useParams();
@@ -13,18 +12,6 @@ const CharacterDetail = () => {
   const [episodes, setEpisodes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [symbolIndex, setSymbolIndex] = useState(0);
-
-  // Анимация загрузки
-  useEffect(() => {
-    if (!loading) return;
-
-    const interval = setInterval(() => {
-      setSymbolIndex((prevIndex) => (prevIndex + 1) % loadingSymbols.length);
-    }, 150);
-
-    return () => clearInterval(interval);
-  }, [loading]);
 
   // Загрузка данных персонажа
   useEffect(() => {
@@ -75,9 +62,7 @@ const CharacterDetail = () => {
   if (loading) {
     return (
       <div className="detail-container">
-        <div className="loading-spinner">
-          {loadingSymbols[symbolIndex]}
-        </div>
+        <Loader />
       </div>
     );
   }

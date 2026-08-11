@@ -161,14 +161,6 @@
   font-size: 0.85rem;
 }
 
-.loading-spinner {
-  text-align: center;
-  padding: var(--space-xl) 0;
-  font-size: 2.5rem;
-  color: var(--color-accent);
-  text-shadow: var(--glow-accent-lg);
-}
-
 .detail-message--error {
   text-align: center;
   font-size: 1.2rem;

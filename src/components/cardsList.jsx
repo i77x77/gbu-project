@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Card from './Card';
+import Loader from './loader';
 import './CardsList.css';
 
 const CardsList = () => {
@@ -28,10 +29,6 @@ const CardsList = () => {
 
   /* Пагинация */
   const [info, setInfo] = useState(null); /* info из ответа API */
-  
-  /* Анимация загрузки: символы | / - \ */
-  const loadingSymbols = ['|', '/', '-', '\\'];
-  const [currentSymbol, setCurrentSymbol] = useState(0);
 
   /* Функция для обновления параметров в URL */
   const updateParams = (newParams) => {
@@ -134,22 +131,6 @@ const CardsList = () => {
     updateParams({ status: e.target.value, page: 1 }); /* Обновляем URL и сбрасываем на 1 страницу */
   };
 
-  useEffect(() => {
-    let interval;
-    if (loading) 
-    {
-      interval = setInterval(() => 
-      {
-        setCurrentSymbol((prev) => (prev + 1) % loadingSymbols.length);
-      }, 150);
-    }
-    else
-    {
-      clearInterval(interval);
-    }
-    return () => clearInterval(interval);
-  }, [loading]);
-
 return (
   <div className="page-wrapper">
     {/* Главный заголовок */}
@@ -187,11 +168,7 @@ return (
     <section className="cards-list">
       {(loading || error || characters.length === 0) && (
         <div className="centered-overlay">
-          {loading && (
-            <div className="loading-spinner">
-              {loadingSymbols[currentSymbol]}
-            </div>
-          )}
+          {loading && <Loader />}
 
           {!loading && error && (
             <div className="error-message">
