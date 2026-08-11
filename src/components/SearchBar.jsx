@@ -1,15 +1,20 @@
+import { useState, useEffect } from 'react';
 import '../styles/SearchBar.css';
 
 function SearchBar({ name, status, onSearch }) {
-  const handleNameChange = (e) => {
-    const newName = e.target.value;
-    onSearch(newName, status); // ← вызываем поиск с новым именем и текущим статусом
-  };
+  /* Локальный стейт для мгновенного отображения ввода */
+  const [localName, setLocalName] = useState(name);
+  const [localStatus, setLocalStatus] = useState(status);
 
-  const handleStatusChange = (e) => {
-    const newStatus = e.target.value;
-    onSearch(name, newStatus); // ← вызываем поиск с текущим именем и новым статусом
-  };
+  /* Debounce: сообщаем наверх новое значение через 250мс после последнего
+     изменения. Каждое новое изменение отменяет предыдущий таймер через cleanup. */
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      onSearch(localName, localStatus);
+    }, 250);
+
+    return () => clearTimeout(timeout);
+  }, [localName, localStatus, onSearch]);
 
   return (
     <div className="search-bar">
@@ -17,13 +22,13 @@ function SearchBar({ name, status, onSearch }) {
         type="text"
         placeholder="Поиск по имени..."
         className="search-input"
-        value={name} // ← берём из пропсов (не локального состояния)
-        onChange={handleNameChange}
+        value={localName}
+        onChange={(e) => setLocalName(e.target.value)}
       />
       <select
         className="search-select"
-        value={status} // ← берём из пропсов
-        onChange={handleStatusChange}
+        value={localStatus}
+        onChange={(e) => setLocalStatus(e.target.value)}
       >
         <option value="">Все статусы</option>
         <option value="alive">Alive</option>

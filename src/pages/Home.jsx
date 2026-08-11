@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
 import Pagination from '../components/Pagination';
@@ -13,19 +13,13 @@ function Home() {
   const [statusFilter, setStatusFilter] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const debounceTimeout = useRef(null);
 
-  const handleSearch = (query, status) => {
-    if (debounceTimeout.current) {
-      clearTimeout(debounceTimeout.current);
-    }
-
-    debounceTimeout.current = setTimeout(() => {
-      setSearchQuery(query);
-      setStatusFilter(status);
-      setPage(1);
-    }, 250);
-  };
+  /* SearchBar уже прислал задебaунсенное значение — просто применяем его */
+  const handleSearch = useCallback((query, status) => {
+    setSearchQuery(query);
+    setStatusFilter(status);
+    setPage(1);
+  }, []);
 
   useEffect(() => {
     const fetchCharacters = async () => {
