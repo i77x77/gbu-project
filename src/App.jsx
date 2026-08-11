@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home.jsx";
-import CharacterDetail from "./components/characterDetail.jsx";
+import CharacterDetail from "./components/CharacterDetail/characterDetail.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
 // Корневой компонент: описывает роутинг приложения.

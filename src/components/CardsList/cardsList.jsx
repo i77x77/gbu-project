@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import Card from './Card';
-import Loader from './loader';
-import './CardsList.css';
+import Card from '../Card/card.jsx';
+import Loader from '../Loader/loader.jsx';
+import './cardsList.css';
 
 const CardsList = () => {
   /* Считываем параметры из URL (хук из библиотеки react-router-dom) */
@@ -20,7 +20,6 @@ const CardsList = () => {
 
   /* Поле поиска по имени (для локального мгновенного отображения в input) */
   const [search, setSearch] = useState(questSearch);
-  const [debounceTimer, setDebounceTimer] = useState(null); /* Таймер для debounce */
 
   /* Синхронизируем поле ввода со значением из URL */
   useEffect(() => {
@@ -43,6 +42,19 @@ const CardsList = () => {
 
     setSearchParams(updated);
   };
+
+  /* Debounce поиска: ждём 512мс после последнего ввода и только тогда обновляем URL.
+     Если пользователь печатает дальше, эффект перезапускается и предыдущий
+     таймер отменяется через cleanup — новый setTimeout не нужен вручную. */
+  useEffect(() => {
+    if (search === questSearch) return;
+
+    const handler = setTimeout(() => {
+      updateParams({ name: search, page: 1 });
+    }, 512);
+
+    return () => clearTimeout(handler);
+  }, [search]);
 
   /* Новый запрос к API при изменении URL-параметров (поиск, фильтр или пагинация) */
   useEffect(() => {
@@ -107,22 +119,8 @@ const CardsList = () => {
     updateParams({ page: pageParam || 1 });
   };
 
-  // Debounce для поиска
   const handleSearchChange = (e) => {
-    const value = e.target.value;
-    setSearch(value); /* Сразу обновляем поле ввода */
-
-    if (debounceTimer) 
-    {
-      clearTimeout(debounceTimer);
-    }
-
-    const newTimer = setTimeout(() => 
-    {
-      updateParams({ name: value, page: 1 }); /* Обновляем URL и сбрасываем на 1 страницу */
-    }, 512);
-
-    setDebounceTimer(newTimer);
+    setSearch(e.target.value); /* Сразу обновляем поле ввода, URL обновится через debounce-эффект выше */
   };
 
   /* Обновляем фильтр в URL */

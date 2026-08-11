@@ -1,5 +1,5 @@
 import React from 'react';
-import CardsList from '../components/CardsList'; // Проверь путь и имя!
+import CardsList from '../components/CardsList/cardsList.jsx';
 
 const Home = () => {
   return (

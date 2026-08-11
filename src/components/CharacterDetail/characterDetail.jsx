@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Loader from './loader';
+import Loader from '../Loader/loader.jsx';
 import './characterDetail.css';
 
 const CharacterDetail = () => {
