@@ -136,6 +136,56 @@
   border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
+/* ===== СОСТОЯНИЯ ===== */
+/* Ошибка */
+.error-state {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 24px;
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.04);
+  border-radius: 20px;
+  border: 2px solid rgba(255, 107, 107, 0.15);
+  margin-top: 20px;
+}
+
+.error-state .error-icon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.error-state .error-sub {
+  font-size: 16px;
+  color: #8899bb;
+  margin-top: 8px;
+  font-weight: 400;
+}
+
+/* Персонаж не найден */
+.no-results-state {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 24px;
+  color: #8899bb;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+  margin-top: 20px;
+}
+
+.loader-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  padding: 40px 0;
+}
+
+.loader-placeholder {
+  min-height: 200px;
+}
+
 /* ===== АДАПТИВНОСТЬ ===== */
 @media (max-width: 768px) {
   .character-card-detail {
@@ -160,6 +210,12 @@
 
   .episodes-list {
     justify-content: center;
+  }
+
+  .error-state,
+  .no-results-state {
+    font-size: 18px;
+    padding: 40px 16px;
   }
 }
 
@@ -190,6 +246,16 @@
 
   .character-info p {
     font-size: 14px;
+  }
+
+  .error-state,
+  .no-results-state {
+    font-size: 16px;
+    padding: 30px 12px;
+  }
+
+  .error-state .error-icon {
+    font-size: 36px;
   }
 }
 

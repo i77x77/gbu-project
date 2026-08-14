@@ -1,20 +1,17 @@
 import { useState, useEffect } from 'react';
 import '../styles/SearchBar.css';
 
-function SearchBar({ name, status, onSearch }) {
-  /* Локальный стейт для мгновенного отображения ввода */
+function SearchBar({ name, status, onSearch, onStatusChange }) {
   const [localName, setLocalName] = useState(name);
   const [localStatus, setLocalStatus] = useState(status);
 
-  /* Debounce: сообщаем наверх новое значение через 250мс после последнего
-     изменения. Каждое новое изменение отменяет предыдущий таймер через cleanup. */
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      onSearch(localName, localStatus);
-    }, 250);
+    setLocalName(name);
+  }, [name]);
 
-    return () => clearTimeout(timeout);
-  }, [localName, localStatus, onSearch]);
+  useEffect(() => {
+    setLocalStatus(status);
+  }, [status]);
 
   return (
     <div className="search-bar">
@@ -23,12 +20,20 @@ function SearchBar({ name, status, onSearch }) {
         placeholder="Поиск по имени..."
         className="search-input"
         value={localName}
-        onChange={(e) => setLocalName(e.target.value)}
+        onChange={(e) => {
+          const value = e.target.value;
+          setLocalName(value);
+          onSearch(value);
+        }}
       />
       <select
         className="search-select"
         value={localStatus}
-        onChange={(e) => setLocalStatus(e.target.value)}
+        onChange={(e) => {
+          const value = e.target.value;
+          setLocalStatus(value);
+          onStatusChange(value);
+        }}
       >
         <option value="">Все статусы</option>
         <option value="alive">Alive</option>

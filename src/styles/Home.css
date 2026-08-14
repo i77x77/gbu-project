@@ -10,7 +10,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Контейнер страницы — без свечения */
+/* Контейнер страницы */
 .home-container {
   padding: 20px;
   max-width: 1400px;
@@ -100,17 +100,29 @@ body {
   border: 2px dashed rgba(255, 255, 255, 0.1);
 }
 
-/* Ошибка и загрузка */
-.home-container > .error,
-.home-container > .loading {
+/* Сообщение об ошибке */
+.error-state {
   text-align: center;
-  padding: 60px 20px;
-  font-size: 20px;
+  padding: 80px 20px;
+  font-size: 24px;
   color: #ff6b6b;
+  grid-column: 1 / -1;
+  background: rgba(255, 107, 107, 0.04);
+  border-radius: 20px;
+  border: 2px solid rgba(255, 107, 107, 0.15);
 }
 
-.home-container > .loading {
-  color: #60efff;
+.error-state .error-icon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.error-state .error-sub {
+  font-size: 16px;
+  color: #8899bb;
+  margin-top: 8px;
+  font-weight: 400;
 }
 
 /* Адаптивность */
@@ -150,7 +162,8 @@ body {
     font-size: 14px;
   }
 
-  .no-results {
+  .no-results,
+  .error-state {
     font-size: 18px;
     padding: 60px 16px;
   }
@@ -181,8 +194,13 @@ body {
     font-size: 12px;
   }
 
-  .no-results {
+  .no-results,
+  .error-state {
     font-size: 16px;
     padding: 40px 12px;
+  }
+
+  .error-state .error-icon {
+    font-size: 36px;
   }
 }

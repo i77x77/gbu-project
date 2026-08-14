@@ -2,7 +2,7 @@ function Pagination({ page, totalPages, onPageChange }) {
   return (
     <div className="pagination">
       <button
-        onClick={() => onPageChange(prev => Math.max(1, prev - 1))}
+        onClick={() => onPageChange(page - 1)}
         disabled={page === 1}
         className="pagination-btn"
       >
@@ -14,7 +14,7 @@ function Pagination({ page, totalPages, onPageChange }) {
       </span>
       
       <button
-        onClick={() => onPageChange(prev => Math.min(totalPages, prev + 1))}
+        onClick={() => onPageChange(page + 1)}
         disabled={page === totalPages}
         className="pagination-btn"
       >
