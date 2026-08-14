@@ -1,0 +1,101 @@
+/* ---------- ФИЛЬТРАЦИЯ ---------- */
+
+/* Общие свойства */
+.filter-bar * {
+  margin: 0;
+  font-family: inherit;
+  font-size: 16px; 
+  outline: none;
+  box-sizing: border-box;
+}
+
+/* Контейнер для панели фильтров */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  width: 100%;
+  margin: 0 0 var(--space-sm) 0;
+}
+
+/* Контейнер для поля ввода */
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+/* Поле ввода */
+.search-input {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+
+  color: var(--color-text);
+  background: var(--color-bg-surface);
+
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-input);
+  transition: box-shadow var(--transition-standart-boost);
+}
+
+.search-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.search-input:hover,
+.search-input:focus {
+  box-shadow: var(--shadow-input-focus);
+}
+
+/* Выпадающий список */
+.status-filter {
+  width: fit-content;
+  max-width: 100%;
+  padding: var(--space-sm) var(--space-md);
+
+  color: var(--color-accent);
+  background: var(--color-bg-surface);
+
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+
+  box-shadow: var(--shadow-input);
+  transition: all var(--transition-standart-boost);
+  user-select: none;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Подсветка при наведении и фокусе */
+.status-filter:hover,
+.status-filter:focus {
+  box-shadow: var(--shadow-input-focus);
+}
+
+.status-filter option {
+  background-color: var(--color-bg-surface);
+  color: var(--color-text);
+
+  font-size: 14px;
+  padding: var(--space-sm);
+}
+
+/* Адаптив для мобильных устройств */
+@media (max-width: 600px) {
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-sm);
+  }
+
+  .search-wrapper,
+  .status-filter {
+    width: 100%;
+  }
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import CardsList from '../components/CardsList/cardsList.jsx';
+import CardsList from '../components/CardsList/cardsList.jsx'; /* Этот комментарий написан ИИ, честно */
 
 const Home = () => {
   return (

@@ -1,0 +1,83 @@
+/* ---------- ПАГИНАЦИЯ ---------- */
+
+/* Общие свойства */
+.pagination-controls * {
+  margin: 0;
+  font-family: inherit;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+/* Обертка блока пагинации */
+.pagination-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  gap: var(--space-md);
+  padding: var(--space-sm) 0;
+  margin: 0;
+
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Кнопки */
+.pagination-btn {
+  padding: var(--space-sm) var(--space-md);
+  font-size: 16px;
+
+  color: var(--color-accent);
+  background: var(--color-bg-surface);
+
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+
+  box-shadow: var(--glow-accent);
+  transition: all var(--transition-standart-boost);
+  user-select: none;
+}
+
+.pagination-btn:hover:not(:disabled),
+.pagination-btn:active:not(:disabled) {
+  color: var(--color-bg-main);
+  background: var(--color-accent);
+  box-shadow: var(--glow-accent-lg);
+}
+
+.pagination-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.pagination-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Заблокированное состояние */
+.pagination-btn:disabled {
+  color: var(--color-text-muted);
+  border-color: var(--color-text-muted);
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Информационный текст */
+.pagination-info {
+  font-size: 18px;
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+
+/* Адаптив для мобильных устройств */
+@media (max-width: 600px) {
+  .pagination-controls {
+    gap: var(--space-sm);
+  }
+
+  .pagination-controls * {
+    font-size: 14px;
+  }
+}

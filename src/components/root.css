@@ -2,6 +2,7 @@
   /* ---------- ОСНОВНЫЕ ЦВЕТА ---------- */
   --color-bg-main: #080d1a; /* Основной фон сайта */
   --color-bg-surface: #08192d; /* Фон плавающих блоков, инпутов, плашек */
+  --color-bg-overlay: rgba(15, 5, 10, 0.85); /* Фон для ошибок и оверлеев */
   --color-bg-card: #000000; /* Чёрный фон карточек */
 
   --color-text: #ffffff; /* Основной белый текст */
@@ -16,21 +17,31 @@
   --color-unknown: #ffcc00; /* Жёлтый */
 
   /* ---------- НЕОНОВОЕ СВЕЧЕНИЕ ---------- */
-  --glow-accent: 0 0 10px rgba(0, 240, 255, 0.5);
-  --glow-accent-lg: 0 0 20px rgba(0, 240, 255, 0.9);
-  --glow-error: 0 0 15px rgba(255, 85, 85, 0.4);
+  --glow-accent: 0 0 16px rgba(0, 240, 255, 0.5);
+  --glow-accent-lg: 0 0 32px rgba(0, 240, 255, 0.9);
+  --glow-error: 0 0 16px rgba(255, 85, 85, 0.4);
+
+  --glow-inset-sm: inset 0 0 8px rgba(0, 240, 255, 0.2);
+  --glow-inset-lg: inset 0 0 16px rgba(0, 240, 255, 0.4);
+
+  --shadow-input: var(--glow-accent), var(--glow-inset-sm);
+  --shadow-input-focus: var(--glow-accent-lg), var(--glow-inset-lg);
 
   /* ---------- СЕТКА ---------- */
-  --space-sm: 8px; /* Мелкие зазоры и паддинги */
+  --space-sm: 8px; /* Мелкие зазоры */
   --space-md: 16px; /* Базовый отступ элементов */
-  --space-lg: 24px; /* Крупные отступы секций */
-  --space-xl: 48px; /* Большие внешние отступы */
+  --space-lg: 32px; /* Крупные отступы секций */
+  --space-xl: 64px; /* Большие внешние отступы */
 
   /* ---------- СКРУГЛЕНИЯ ---------- */
   --radius-sm: 8px; /* Кнопки, инпуты, теги, картинки */
   --radius-lg: 16px; /* Крупные карточки и модальные окна */
 
-  /* ---------- 6. МАКСИМАЛЬНАЯ ШИРИНА ---------- */
+  /* ---------- МАКСИМАЛЬНАЯ ШИРИНА ---------- */
   --layout-max-width: 2048px;
-  --layout-detail-width: 900px;
+  --layout-detail-width: 1024px;
+
+  /* ---------- АНИМАЦИЯ ---------- */
+  --transition-standart: 0.4s ease;
+  --transition-standart-boost: 0.4s ease-in-out;
 }

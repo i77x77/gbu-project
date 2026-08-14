@@ -3,6 +3,8 @@ import Home from "./pages/Home.jsx";
 import CharacterDetail from "./components/CharacterDetail/characterDetail.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
+import "./components/root.css";
+
 // Корневой компонент: описывает роутинг приложения.
 // "*" — заглушка для несуществующих путей (404).
 function App() {
