@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Loader from '../Loader/loader.jsx';
 import './characterDetail.css';
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const CharacterDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -21,7 +23,7 @@ const CharacterDetail = () => {
         setError(null);
 
         // Запрос по id
-        const response = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
+        const response = await fetch(`${apiUrl}/character/${id}`);
 
         if (!response.ok) {
           throw new Error('Персонаж не найден!');
@@ -36,7 +38,7 @@ const CharacterDetail = () => {
             .map((url) => url.split('/').pop())
             .join(',');
 
-          const episodeResponse = await fetch(`https://rickandmortyapi.com/api/episode/${episodeIds}`);
+          const episodeResponse = await fetch(`${apiUrl}/episode/${episodeIds}`);
 
           if (!episodeResponse.ok) {
             throw new Error('Не удалось загрузить эпизоды');

@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import useDebounce from '../../hooks/useDebounce';
-import Search from '../Filters/search.jsx';
-import Filter from '../Filters/filter.jsx';
-import Pagination from '../Pagination/pagination.jsx';
-import Card from '../Card/card.jsx';
-import Loader from '../Loader/loader.jsx';
-import './cardsList.css';
+import React, { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import useDebounce from "../../hooks/useDebounce";
+import Search from "../Filters/search.jsx";
+import Filter from "../Filters/filter.jsx";
+import Pagination from "../Pagination/pagination.jsx";
+import Card from "../Card/card.jsx";
+import Loader from "../Loader/loader.jsx";
+import "./cardsList.css";
 
 const apiUrl = import.meta.env?.VITE_API_URL;
 
 const status = [
-  { value: 'alive', label: 'Жив(а)' },
-  { value: 'dead', label: 'Мёртв(а)' },
-  { value: 'unknown', label: 'Неизвестно' },
+  { value: "alive", label: "Жив(а)" },
+  { value: "dead", label: "Мёртв(а)" },
+  { value: "unknown", label: "Неизвестно" },
 ];
 
 const CardsList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const page = Number(searchParams.get('page')) || 1;
-  const questSearch = searchParams.get('name') || '';
-  const statusFilter = searchParams.get('status') || '';
+  const page = Number(searchParams.get("page")) || 1;
+  const questSearch = searchParams.get("name") || "";
+  const statusFilter = searchParams.get("status") || "";
 
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -48,12 +48,15 @@ const CardsList = () => {
   };
 
   const handleReset = () => {
-    setSearch('');
+    setSearch("");
     setSearchParams({});
   };
 
   /* Вопрос по таймеру: меня смущает цепочка из двух useEffect (один внутри useDebounce, второй здесь).
   Это ведь лишний рендер? Стоит ли пытаться избегать таких конструкций? Например, через useRef?*/
+
+  /*В данном случае ререндер недорогой.Ну вообще лишний раз useEffect лучше избегать.А так в данном случае можно оставить так.*/
+
   const debouncedSearch = useDebounce(search, 512);
 
   useEffect(() => {
@@ -68,14 +71,14 @@ const CardsList = () => {
 
       try {
         const params = new URLSearchParams();
-        params.append('page', page);
+        params.append("page", page);
 
         if (questSearch) {
-          params.append('name', questSearch);
+          params.append("name", questSearch);
         }
 
         if (statusFilter) {
-          params.append('status', statusFilter);
+          params.append("status", statusFilter);
         }
 
         const url = `${apiUrl}/character?${params.toString()}`;
@@ -83,7 +86,7 @@ const CardsList = () => {
 
         if (!response.ok) {
           if (response.status === 404) {
-            throw new Error('Ничего не найдено');
+            throw new Error("Ничего не найдено");
           } else {
             throw new Error(`Ошибка запроса: ${response.status}`);
           }
@@ -107,7 +110,7 @@ const CardsList = () => {
   const goToPage = (nextUrl) => {
     if (!nextUrl) return;
     const url = new URL(nextUrl);
-    const pageParam = url.searchParams.get('page');
+    const pageParam = url.searchParams.get("page");
     updateParams({ page: pageParam || 1 });
   };
 
@@ -127,7 +130,7 @@ const CardsList = () => {
         role="button"
         tabIndex={0}
         onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
+          if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             handleReset();
           }
